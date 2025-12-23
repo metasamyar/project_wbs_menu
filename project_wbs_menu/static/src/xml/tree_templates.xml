@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="project_tree_templates" xml:space="preserve">
+
+    <t t-name="MySimpleTree.Root" owl="1">
+        <!-- این همون نسخه‌ای هست که state.tree استفاده می‌کند؛
+             فعلاً می‌تونی استفاده‌اش نکنی، فقط وجودش مشکلی ایجاد نمی‌کند -->
+        <!-- ... هر چیزی که خودت داخل این فایل گذاشتی ... -->
+    </t>
+
+</templates>

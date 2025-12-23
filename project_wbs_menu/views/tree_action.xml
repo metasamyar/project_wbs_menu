@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_project_task_project_tree" model="ir.actions.act_window">
+            <field name="name">WBS</field>
+            <field name="res_model">project.task</field>
+
+            <!-- list as default, form as secondary -->
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="view_project_task_tree_custom"/>
+
+            <!-- context key for your JS tree behaviour -->
+	    <field name="context">
+	        {'project_tree_mode': True, 'group_by': ['project_id']}
+	    </field>
+
+
+            <!-- 🔴 remove domain so it shows ALL tasks -->
+            <!-- <field name="domain">[('message_follower_ids.partner_id.user_ids', 'in', [uid])]</field> -->
+        </record>
+
+    </data>
+</odoo>

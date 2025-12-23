@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem
+            id="menu_project_task_project_tree"
+            name="Project WBS"
+            parent="project.menu_main_pm"
+            action="action_project_task_project_tree"
+            sequence="40"
+        />
+
+    </data>
+</odoo>

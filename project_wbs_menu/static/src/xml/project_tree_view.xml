@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="project_tree_app_templates" xml:space="preserve">
+
+    <t t-name="MySimpleTree.ProjectTreeView" owl="1">
+        <div class="ptree_app_root o_view_nocontent_smiling_face">
+            <div class="ptree_header d-flex align-items-center justify-content-between">
+                <div class="d-flex flex-column">
+                    <div class="ptree_title">
+                        درخت پروژه / تسک
+                    </div>
+
+                    <div style="font-size:13px; color:#666;" t-if="tree.length">
+                        تعداد پروژه‌ها:
+                        <t t-esc="tree.length"/>
+                    </div>
+                    <div style="font-size:13px; color:#666;" t-else="">
+                        هنوز هیچ پروژه‌ای در این درخت نمایش داده نمی‌شود.
+                    </div>
+                </div>
+            </div>
+
+            <div class="ptree_container">
+                <t t-if="tree.length">
+                    <ul class="ptree_root_list">
+                        <!-- پروژه‌ها -->
+                        <t t-foreach="tree" t-as="proj" t-key="proj.id">
+                            <li class="ptree_node">
+                                <div class="ptree_node_header">
+                                    <span class="ptree_node_title"
+                                          style="cursor:pointer;"
+                                          t-on-click="() => this.openProject(proj.id)">
+                                        <t t-esc="proj.name or 'پروژه بدون نام'"/>
+                                    </span>
+
+                                    <div class="ptree_fields">
+                                        <t t-if="proj.manager">
+                                            <span class="ptree_field_item">
+                                                مدیر:
+                                                <t t-esc="proj.manager"/>
+                                            </span>
+                                        </t>
+                                        <t t-if="proj.company">
+                                            <span class="ptree_field_item">
+                                                شرکت:
+                                                <t t-esc="proj.company"/>
+                                            </span>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <!-- تسک‌های پروژه -->
+                                <t t-if="proj.tasks and proj.tasks.length">
+                                    <div class="ptree_children">
+                                        <ul>
+                                            <t t-foreach="proj.tasks" t-as="task" t-key="task.id">
+                                                <li class="ptree_node">
+                                                    <div class="ptree_node_header">
+                                                        <span class="ptree_node_title"
+                                                              style="cursor:pointer;"
+                                                              t-on-click="() => this.openTask(task.id)">
+                                                            <t t-esc="task.name or 'تسک بدون نام'"/>
+                                                        </span>
+
+                                                        <div class="ptree_fields">
+                                                            <t t-if="task.stage">
+                                                                <span class="ptree_field_item">
+                                                                    <t t-esc="task.stage"/>
+                                                                </span>
+                                                            </t>
+                                                            <t t-if="task.assigned">
+                                                                <span class="ptree_field_item">
+                                                                    👤
+                                                                    <t t-esc="task.assigned"/>
+                                                                </span>
+                                                            </t>
+                                                            <t t-if="task.deadline">
+                                                                <span class="ptree_field_item">
+                                                                    📅
+                                                                    <t t-esc="task.deadline.split(' ')[0]"/>
+                                                                </span>
+                                                            </t>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </t>
+                                        </ul>
+                                    </div>
+                                </t>
+                            </li>
+                        </t>
+                    </ul>
+                </t>
+
+                <t t-else="">
+                    <div class="text-center text-muted" style="margin-top: 24px;">
+                        هیچ نتیجه‌ای مطابق فیلتر فعلی یافت نشد.
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+</templates>
