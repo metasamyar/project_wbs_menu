@@ -1,50 +1,81 @@
-# Project WBS Menu
+# 🚀 Odoo Project WBS Menu
+> **Supercharge your Project Management with a Deep Hierarchical Tree View!**
 
-**Version:** 18.0.1.0.0  
+![Odoo Version](https://img.shields.io/badge/Odoo-18.0-purple?style=for-the-badge&logo=odoo)
+![License](https://img.shields.io/badge/License-LGPL--3-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
+![Code](https://img.shields.io/badge/Made%20with-OWL%20%26%20Python-yellow?style=for-the-badge)
+
+---
+
+## ⚡ Overview
+
+Tired of flat lists? **Project WBS Menu** transforms your Odoo project view into a **powerful, infinite-depth tree**. Visualize your entire project structure—from the root Project down to the smallest sub-task—in one unified, collapsible interface.
+
+Stop clicking back and forth. **See everything at once.** 👀
+
+---
+
+## ✨ Key Features
+
+### 🌳 **Infinite Hierarchy**
+* **Deep Nesting:** Go as deep as you need! Projects $\rightarrow$ Tasks $\rightarrow$ Sub-tasks $\rightarrow$ Sub-sub-tasks...
+* **Smart Grouping:** Automatically groups tasks under their Projects. Orphan tasks? They get their own "To-do" section.
+
+### 🎨 **Sleek UI/UX**
+* **Custom Renderer:** Built with Odoo's **OWL framework** for a snappy, reactive experience.
+* **Interactive Tree:** Click `▸` to expand or `▾` to collapse branches instantly.
+* **Visual Candies:** Clean badges for stages, assignee avatars (text), and deadlines.
+
+### 🚀 **High Performance**
+* **Single RPC Call:** Fetches the entire tree structure in **one go** (`tree_get_full`), keeping your server happy and your UI fast.
+* **Client-Side Magic:** Pagination and expansion logic happen instantly in the browser.
+
+---
+
+## 🛠️ Tech Stack
+
+* **Backend:** Python (Recursive Logic, `sudo` safe computations)
+* **Frontend:** JavaScript (OWL Component System)
+* **Styling:** Custom CSS Grid Layout
+* **Compatibility:** Odoo 18.0 Enterprise / Community
+
+---
+
+## 📥 Installation
+
+Ready to roll? Fire up your terminal! 💻
+
+1.  **Clone the Repo:**
+    ```bash
+    cd /your/odoo/custom/addons
+    git clone [https://github.com/metasamyar/Odoo-Discuss-Web-Push-Notifications.git](https://github.com/metasamyar/Odoo-Discuss-Web-Push-Notifications.git) project_wbs_menu
+    ```
+
+2.  **Restart Odoo:**
+    ```bash
+    ./odoo-bin -c odoo.conf -u project_wbs_menu
+    ```
+
+3.  **Activate:**
+    Go to **Apps**, search for `Project WBS Menu`, and hit **Install**.
+
+---
+
+## 🎮 How to Use
+
+1.  Open the **Project** app.
+2.  Look for the **"Project WBS"** menu (usually under *Projects*).
+3.  **Explore your tree:**
+    * Click the **Project Title** or **Task Name** to open the form view.
+    * Use the **Pager** `< >` top-right to flip through project pages.
+
+---
+
+## 🤝 Contributing
+
+Got ideas? Found a bug? 🐛
+Feel free to open an issue or submit a PR!
+
 **Author:** UNIMICS T&I Team  
-**License:** LGPL-3 (Default for Odoo apps unless specified otherwise)
-
-## Overview
-
-The **Project WBS Menu** module extends the Odoo Project application to provide a specialized **Work Breakdown Structure (WBS)** view. Unlike the standard list or kanban views, this module introduces a hierarchical tree interface that allows users to visualize projects, tasks, and infinitely nested sub-tasks in a single, consolidated view.
-
-It features a custom JavaScript renderer that overrides the standard list view to render a deeply nested, collapsible tree structure, making it easier to manage complex project hierarchies.
-
-## Key Features
-
-- **Hierarchical WBS View**: Displays a tree structure starting from Projects $\rightarrow$ Tasks $\rightarrow$ Sub-tasks (unlimited depth).
-- **Custom Tree Renderer**: Uses a dedicated OWL component (`ProjectWBSRenderer`) to render the tree, providing a distinct visual layout from standard Odoo lists.
-- **Deep Nesting Support**: 
-  - Automatically calculates WBS levels (`wbs_level_db`) in the backend.
-  - Fetches full sub-tree hierarchies efficiently using a single RPC call (`tree_get_full`).
-- **Project Grouping**: Groups tasks under their respective projects automatically. Tasks without projects are grouped under a "To-do" section.
-- **Interactive Elements**:
-  - **Expand/Collapse**: Toggle visibility of sub-tasks with a click.
-  - **Direct Links**: Click on task titles to open the standard form view.
-  - **Status Indicators**: Visual badges for project names and task stages.
-  - **Pagination**: Custom client-side pagination to handle large datasets smoothly.
-- **Safe Permissions**: optimized backend logic to handle record rules and access rights securely (using `sudo` for structural calculations where appropriate).
-
-## Technical Details
-
-### Backend (`models/`)
-- **`project.task`**: Extended with `tree_get_full` to return a recursive JSON structure of tasks and their children.
-- **Computed Fields**: 
-  - `wbs_level_db`: Stores the hierarchy depth of a task.
-  - `project_label_safe`: A computed field to safely retrieve project names without triggering access errors.
-
-### Frontend (`static/src/`)
-- **JavaScript (OWL)**:
-  - `project_task_tree_patch.js`: Registers `project_wbs_tree` as a custom view type. It hides the standard list table and injects a custom DOM structure (`.my_task_tree_container`).
-  - Handles the "Load More", Pagination, and Expand/Collapse logic purely on the client side after fetching data.
-- **XML**:
-  - `tree_templates.xml` & `project_tree_view.xml`: Defines the templates for the custom renderer.
-- **CSS**:
-  - `tree_view.css`: Provides the styling for the tree grid, indentation, and badges.
-
-## Installation
-
-1. Clone this repository into your Odoo addons path:
-   ```bash
-   cd /path/to/your/addons
-   git clone [https://github.com/metasamyar/Odoo-Discuss-Web-Push-Notifications.git](https://github.com/metasamyar/Odoo-Discuss-Web-Push-Notifications.git) project_wbs_menu
+**Happy Coding!** 💻✨
